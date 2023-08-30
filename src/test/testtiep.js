@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
 
-const daysOfWeek = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
+const DAYSOFWEEK = {
+    day0: 'Thứ 2',
+    day1: 'Thứ 3',
+    day2: 'Thứ 4',
+    day3: 'Thứ 5',
+    day4: 'Thứ 6',
+    day5: 'Thứ 7',
+}
+
+const daysOfWeek = ["day0", "day1", "day2", "day3", "day4", "day5"];
 const periods = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const subject = [
     { id: 1, name: "Toán" },
@@ -20,9 +29,9 @@ const generateColumns = (handleCellClick, handleDragOver, handleDrop) => {
         },
     ];
 
-    daysOfWeek.forEach((day, index) => {
+    daysOfWeek?.forEach((day, index) => {
         columns.push({
-            title: day,
+            title: DAYSOFWEEK[day],
             dataIndex: `day${index}`,
             key: `day${index}`,
             onCell: (record) => ({
@@ -54,7 +63,6 @@ const Appp = () => {
 
     const dataSource = generateDataSource();
 
-    console.log('dataSource', dataSource)
     const [data, setData] = useState(dataSource)
 
     const handleDragStart = (e, id, name) => {
@@ -79,16 +87,30 @@ const Appp = () => {
         console.log(period)
         console.log(day)
         console.log(e)
-        console.log(dataSource)
-        // setData([...data, { ...record, }])
-    };
+        const chooseDay = data?.find(element => element.period === period)
+        const index = data?.findIndex(element => element.period === period)
+        console.log(chooseDay)
 
+        console.log(chooseDay[day])
+        // setData([...data, data[index] : {
+        //     ...data[index]
+        // }])
+        const key = Object.keys(chooseDay)?.find(value => value === day)
+
+        data[index][day] = droppedData
+        console.log(data)
+        const newData = [...data]
+        console.log(chooseDay[key])
+        // newData[index] = { ...newData[index], chooseDay[day]: droppedData }
+        // const newArray = [...arrayOfObjects];
+        // newArray[index] = { ...newArray[index], age: newAge };
+        // setArrayOfObjects(newArray);
+    };
     const handleCellClick = (period, day) => {
         console.log(`Clicked on period ${period}, day ${day}`);
     };
     const columns = generateColumns(handleCellClick, handleDragOver, handleDrop);
 
-    console.log(data)
 
     return (
         <>
