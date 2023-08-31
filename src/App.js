@@ -5,6 +5,8 @@ import Cardss from "./test/Card";
 import CalendarTable from "./test/Cenlendar";
 import MyTable from "./test/Cenlendar";
 import Appp from "./test/testtiep";
+import MyTable1 from "./test/ContainerCards";
+import LastTest from "./test/lastTest";
 
 const daysOfWeek = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"];
 const times = Array.from({ length: 9 }, (_, index) => index + 1);
@@ -47,30 +49,21 @@ function App() {
         console.log(e)
     };
 
-    // const dataSource = times.map((time) => {
-    //     const rowData = { key: time.toString() };
-    //     daysOfWeek.forEach((day, index) => {
-    //         // console.log(`${day}-${time}`);
-    //         rowData[day] = (
-    //             <div></div>
-    //         );
-    //     });
-    //     return rowData;
-    // });
+    const dataSource = times.map((time) => {
+        const rowData = { key: time.toString() };
+        daysOfWeek.forEach((day, index) => {
+            // console.log(`${day}-${time}`);
+            rowData[day] = (
+                <div>aaaa</div>
+            );
+        });
+        return rowData;
+    });
 
-    const dataSource = Array.from({ length: 9 }, (_, index) => ({
-        key: index + 1,
-        tiet: index + 1,
-        t2: ``,
-        t3: ``,
-        t4: ``,
-        t5: ``,
-        t6: ``,
-        t7: ``,
-    }));
+
     const [dataS, setDataS] = useState(dataSource)
     // console.log(subjectId);
-    console.log(dataSource)
+    // console.log(dataSource)
 
     const columns = [
         {
@@ -90,7 +83,8 @@ function App() {
         })),
     ];
 
-    // console.log(dataSource);
+
+    // console.log('dataSource', dataSource);
 
     return (
         <div className="App">
@@ -100,13 +94,10 @@ function App() {
                 bordered
                 pagination={false}
                 onDragOver={handleDragOver}
-                onCell={(record, index) => ({
-                    onDragOver: (e) => handleDragOver(e, record),
-                    onDrop: (e) => handleDrop(e, record, index),
-                })}
 
-            />
-            <div>
+            /> */}
+            {/* <MyTable1 /> */}
+            {/* <div>
                 {subject?.map((element, key) => (
                     <div
                         draggable
@@ -129,6 +120,7 @@ function App() {
                 ))}
             </div> */}
             <Appp />
+            <LastTest />
         </div>
     );
 }

@@ -82,35 +82,37 @@ const Appp = () => {
     const handleDrop = (e, record, period, day) => {
         console.log(e);
         const droppedData = e.dataTransfer.getData('text');
-        console.log(droppedData)
-        console.log(record)
-        console.log(period)
-        console.log(day)
-        console.log(e)
+        // console.log(droppedData)
+        // console.log(record)
+        // console.log(period)
+        // console.log(day)
+        // console.log(e)
         const chooseDay = data?.find(element => element.period === period)
         const index = data?.findIndex(element => element.period === period)
-        console.log(chooseDay)
+        // console.log(chooseDay)
 
-        console.log(chooseDay[day])
+        // console.log(chooseDay[day])
         // setData([...data, data[index] : {
         //     ...data[index]
         // }])
         const key = Object.keys(chooseDay)?.find(value => value === day)
 
-        data[index][day] = droppedData
+        // data[index][day] = droppedData
         console.log(data)
         const newData = [...data]
+        newData[index][day] = droppedData
         console.log(chooseDay[key])
         // newData[index] = { ...newData[index], chooseDay[day]: droppedData }
         // const newArray = [...arrayOfObjects];
         // newArray[index] = { ...newArray[index], age: newAge };
         // setArrayOfObjects(newArray);
+        setData(newData)
     };
     const handleCellClick = (period, day) => {
         console.log(`Clicked on period ${period}, day ${day}`);
     };
     const columns = generateColumns(handleCellClick, handleDragOver, handleDrop);
-
+    console.log(data)
 
     return (
         <>
@@ -129,7 +131,7 @@ const Appp = () => {
             </div>
             <Table
                 columns={columns}
-                dataSource={dataSource}
+                dataSource={data}
                 pagination={false}
                 bordered
             // onRow={(record, period, index) => ({
