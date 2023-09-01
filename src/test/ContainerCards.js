@@ -1,55 +1,41 @@
 import React from 'react';
 import { Table } from 'antd';
 
+const dataSource = [
+    {
+        key: '1',
+        name: 'John',
+        age: 30,
+        customCellContent: <div style={{ backgroundColor: 'yellow' }}>Custom Content</div>,
+    },
+    {
+        key: '2',
+        name: 'Alice',
+        age: 25,
+        customCellContent: <div style={{ backgroundColor: 'lightblue' }}>Another Custom Content</div>,
+    },
+];
+
 const columns = [
     {
-        title: 'Thời gian',
-        dataIndex: 'thoiGian',
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
     },
     {
-        title: 'T2',
-        dataIndex: 't2',
+        title: 'Age',
+        dataIndex: 'age',
+        key: 'age',
     },
     {
-        title: 'T3',
-        dataIndex: 't3',
-    },
-    {
-        title: 'T4',
-        dataIndex: 't4',
-    },
-    {
-        title: 'T5',
-        dataIndex: 't5',
-    },
-    {
-        title: 'T6',
-        dataIndex: 't6',
+        title: 'Custom Cell',
+        key: 'customCell',
+        render: (text, record) => record.customCellContent,
     },
 ];
 
-const data = [
-    {
-        thoiGian: 'Tiết 1',
-        t2: '...',
-        t3: '...',
-        t4: '...',
-        t5: '...',
-        t6: '...',
-    },
-    {
-        thoiGian: 'Tiết 2',
-        t2: '...',
-        t3: '...',
-        t4: '...',
-        t5: '...',
-        t6: '...',
-    },
-    // Tương tự cho các tiết khác
-];
-
-const CustomTable = () => {
-    return <Table columns={columns} dataSource={data} pagination={false} />;
-};
+function CustomTable() {
+    return <Table dataSource={dataSource} columns={columns} />;
+}
 
 export default CustomTable;

@@ -96,7 +96,6 @@ function App() {
                 onDragOver={handleDragOver}
 
             /> */}
-            {/* <MyTable1 /> */}
             {/* <div>
                 {subject?.map((element, key) => (
                     <div
@@ -119,7 +118,7 @@ function App() {
                     <div>{element.name}</div>
                 ))}
             </div> */}
-            <Appp />
+            {/* <Appp /> */}
             <LastTest />
         </div>
     );
