@@ -41,6 +41,12 @@ const generateColumns = (
             title: DAYSOFWEEK[day],
             dataIndex: `day${index}`,
             key: `day${index}`,
+            // children: [
+            //     { title: 'a' },
+            //     { title: 'a' },
+            //     { title: 'a' },
+            //     { title: 'a' },
+            // ],
             onCell: (record) => ({
                 onClick: () => handleCellClick(record.period, day),
                 onDragOver: (e) => handleDragOver(e, day, record.period),
@@ -76,6 +82,7 @@ const generateColumns = (
                         ))}
                 </div>
             ),
+
         });
     });
 
